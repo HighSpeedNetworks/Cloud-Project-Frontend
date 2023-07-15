@@ -28,6 +28,7 @@ import TableCell from '@mui/material/TableCell'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 //import makeStyles from '@mui/material/styles/makeStyles'
 
 
@@ -131,7 +132,11 @@ function Home({ signOut, user }) {
 								style={{
 									backgroundColor: '#59c2af',
 								  }}>
-        					      <TableCell>Room Name</TableCell>
+        					    <TableCell>
+									<Typography variant="subtitle1" style={{ display: 'flex', alignItems: 'center' }}>
+										Application Rooms <MeetingRoomIcon style={{ marginRight: '8px', verticalAlign: 'middle' }}/>
+		      						</Typography>
+								</TableCell>
         					    </TableRow>
         					  </TableHead>
         					  <TableBody>
