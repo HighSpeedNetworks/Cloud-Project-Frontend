@@ -26,7 +26,7 @@ export const RoomList = ({ handleMenuToggle, rooms = [] }) => {
 					  }}>
         		    <TableCell>
 						<Typography variant="subtitle1" style={{ display: 'flex', alignItems: 'center' }}>
-							Application Rooms <MeetingRoomIcon style={{ marginRight: '8px', verticalAlign: 'middle' }}/>
+							Rooms <MeetingRoomIcon style={{ marginRight: '8px', verticalAlign: 'middle' }}/>
 		      			</Typography>
 					</TableCell>
         		    </TableRow>

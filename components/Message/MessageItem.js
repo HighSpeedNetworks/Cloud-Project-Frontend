@@ -30,8 +30,8 @@ export const MessageItem = ({ msg = {}, myUsername }) => {
 				<Image
 					borderRadius={tokens.radii.small}
 					src={`https://github.com/${msg.owner}.png`}
-					height="50px"
-					width={'50px'}
+					height="30px"
+					width={'30px'}
 					alt="avatar"
 				/>
 

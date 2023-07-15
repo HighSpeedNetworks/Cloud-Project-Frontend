@@ -1,4 +1,4 @@
-import { Flex, Heading, useTheme, View } from '@aws-amplify/ui-react'
+import { Flex, useTheme, View } from '@aws-amplify/ui-react'
 import { useEffect, useState } from 'react'
 import { withSSRContext } from 'aws-amplify'
 import { InputArea } from '../../components/InputArea'
@@ -10,6 +10,24 @@ import { listMessagesForRoom, listRooms } from '../../src/graphql/queries'
 import { createMessage } from '../../src/graphql/mutations'
 import { onCreateMessageByRoomId } from '../../src/graphql/subscriptions'
 import { useRouter } from 'next/router'
+
+import React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Box from "@mui/material/Box";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
+import Grid from '@mui/system/Unstable_Grid/Grid'
+
+import TableContainer from '@mui/material/TableContainer'
+import Table from '@mui/material/Table'
+import TableCell from '@mui/material/TableCell'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Paper from '@mui/material/Paper'
+
+
 Amplify.configure({ ...config, ssr: true })
 
 function RoomPage({ roomsList, currentRoomData, username }) {
@@ -51,6 +69,11 @@ function RoomPage({ roomsList, currentRoomData, username }) {
 		router.push(`/rooms/${roomID}`)
 	}
 
+	const handleClick = () => {
+		const rootUrl = window.location.origin;
+		window.location.href = rootUrl;
+	};
+
 	useEffect(() => {
 		API.graphql({
 			query: listMessagesForRoom,
@@ -80,31 +103,69 @@ function RoomPage({ roomsList, currentRoomData, username }) {
 		return () => subscription.unsubscribe()
 	}, [currentRoom.id, username])
 
+
 	return (
-		<>
-			<View>
-				<Flex direction={{ base: 'column', medium: 'row' }}>
-					<ConversationBar rooms={rooms} onRoomChange={handleRoomChange} />
-					<View flex={{ base: 0, medium: 1 }}>
-						<View margin="0 auto" maxWidth={{ base: '95vw', medium: '100vw' }}>
-							<Heading
-								style={{ borderBottom: '1px solid black' }}
-								padding={tokens.space.small}
-								textAlign={'center'}
-								level={3}
-								color={tokens.colors.blue[60]}
-							>
-								{currentRoom.name}
-							</Heading>
-							<Flex direction="column" height="85vh">
-								<MessageList messages={messages} myUsername={username} />
-								<InputArea onMessageSend={handleMessageSend} />
-							</Flex>
-						</View>
-					</View>
+		<View>
+			<AppBar position="static" style={{backgroundColor:'#3e8a7b',borderRadius: '5px',}}>
+      			<Toolbar style={{ justifyContent: 'space-between' }}>
+        			<Typography variant="h6" component="div">
+          				High Speed Network Chat Application
+        			</Typography>
+
+					<Button variant="contained" endIcon={<KeyboardReturnIcon />}
+					 	style={{ alignContent:'end', color: 'white', backgroundColor:'#367569'}}
+						onClick={handleClick}>Back</Button>
+
+      			</Toolbar>
+    		</AppBar>
+
+			<Box display="flex" justifyContent="center" alignItems="center" height="70vh"
+				style={{marginTop:'30px'}}>
+				<Flex direction="column" height="85vh" width='1000px'>
+					<Grid container spacing={2}
+						style={{borderRadius: '5px',padding: '1rem', width:'100%'}}>
+						<Grid item xs={10} style={{width:'40%'}}>
+							<ConversationBar rooms={rooms} onRoomChange={handleRoomChange} />
+						</Grid>
+		    			<Grid item xs={10} style={{width:'60%'}}>
+							<View flex={{ base: 0, medium: 1 }}>
+
+								<View margin="0 auto" maxWidth={{ base: '95vw', medium: '100vw',alignContent:'center' }}>
+
+									<TableContainer component={Paper} style={{ marginTop: '1rem' }}>
+        								<Table>
+        								  <TableHead>
+        								    <TableRow
+											style={{
+												backgroundColor: '#59c2af',
+											  }}>
+        								    <TableCell>
+												<Typography variant="h6" 
+													style={{display: 'flex',
+															alignItems: 'center',
+															justifyContent: 'center',
+															borderRadius: '5px',
+															textAlign: 'center', 
+															alignItems: 'center' }}>
+													{currentRoom.name}
+		      									</Typography>
+											</TableCell>
+        								    </TableRow>
+        								  </TableHead>
+        								</Table>
+      								</TableContainer>
+									<Flex direction="column" height="77vh">
+										<MessageList messages={messages} myUsername={username} 
+											style={{margin:'10px'}}/>
+										<InputArea onMessageSend={handleMessageSend} />
+									</Flex>
+								</View>
+							</View>
+						</Grid>
+					</Grid>
 				</Flex>
-			</View>
-		</>
+			</Box>
+		</View>
 	)
 }
 
