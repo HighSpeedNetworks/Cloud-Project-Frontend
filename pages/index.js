@@ -51,6 +51,7 @@ function Home({ signOut, user }) {
 	const [rooms, setRooms] = useState([])
 	const [roomName, setRoomName] = useState('')
 
+	//TODO: add bg image
 	//const classes = useStyles();
 
 	useEffect(() => {
@@ -74,45 +75,6 @@ function Home({ signOut, user }) {
 
 		setRooms([...rooms, data.createRoom])
 	}
-
-	/*
-	<TextField
-							width="300px"
-							label="New Room Name"
-							placeholder="product-love"
-							onChange={(e) => setRoomName(e.target.value)}
-						/>
-
-						<ul>
-						{rooms.map((room) => (
-							<li key={room.id}>
-								<NextLink href={`/rooms/${room.id}`}>
-									<Link>{room.name}</Link>
-								</NextLink>
-							</li>
-						))}
-					</ul>
-
-
-					<form onSubmit={handleSubmit}>
-				<TextField
-					width="300px"
-					label="New Room Name"
-					placeholder="product-love"
-					onChange={(e) => setRoomName(e.target.value)}
-				/>
-			</form>
-
-			<ul>
-				{rooms.map((room) => (
-					<li key={room.id}>
-						<NextLink href={`/rooms/${room.id}`}>
-							<Link>{room.name}</Link>
-						</NextLink>
-					</li>
-				))}
-			</ul>
-	*/
 
 	return (
 		<View>
