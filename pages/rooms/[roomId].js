@@ -26,6 +26,7 @@ import TableCell from '@mui/material/TableCell'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import ChatIcon from '@mui/icons-material/Chat';
 
 
 Amplify.configure({ ...config, ssr: true })
@@ -147,7 +148,8 @@ function RoomPage({ roomsList, currentRoomData, username }) {
 															borderRadius: '5px',
 															textAlign: 'center', 
 															alignItems: 'center' }}>
-													{currentRoom.name}
+													{currentRoom.name} <ChatIcon style={{ marginRight: '8px', 
+																							verticalAlign: 'middle'}}/>
 		      									</Typography>
 											</TableCell>
         								    </TableRow>
