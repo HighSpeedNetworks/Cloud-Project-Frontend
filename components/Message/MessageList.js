@@ -5,7 +5,7 @@ export const MessageList = ({ messages = [], myUsername }) => {
 	return (
 		<Flex
 			flex="1"
-			backgroundColor="white"
+			backgroundImage={`url(${'../../Images/chatbg.jpg'})`}
 			style={{ overflowY: 'scroll' }}
 			direction="column-reverse"
 			padding="5px"

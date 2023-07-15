@@ -23,8 +23,8 @@ export const MessageItem = ({ msg = {}, myUsername }) => {
 			borderRadius={tokens.radii.small}
 			variation="elevated"
 			alignSelf={isMyMsg ? 'end' : 'start'}
-			width={{ base: '300px', medium: '450px' }}
-			backgroundColor={isMyMsg ? '#007aff' : '#DDDDDD'}
+			width={{ base: '500px', medium: '450px' }}
+			backgroundColor={isMyMsg ? '#02c9a1' : '#EEEEEE'}
 		>
 			<Flex>
 				<Image
@@ -37,12 +37,12 @@ export const MessageItem = ({ msg = {}, myUsername }) => {
 
 				<View>
 					<Flex>
-						<Heading level={5} color={isMyMsg ? 'white' : 'black'}>
+						<Heading level={6} color={isMyMsg ? 'white' : 'black'}>
 							{msg.owner}{' '}
 							<Text
 								as="span"
 								color={isMyMsg ? 'white' : 'black'}
-								fontSize={'12px'}
+								fontSize={'11px'}
 								fontWeight="normal"
 							>
 								{msg.createdAt}
@@ -54,7 +54,10 @@ export const MessageItem = ({ msg = {}, myUsername }) => {
 						isMyMsg={isMyMsg}
 						msgContent={msg.content.text}
 						isEdited={isEdited}
+						fontSize={'12px'}
+						fontWeight="normal"
 					/>
+			
 					<PicMessage isMyMsg={isMyMsg} msgContent={msg.content.imageId} />
 				</View>
 			</Flex>
